@@ -16,7 +16,7 @@ def strip(q):
 
     text = []
     for url in l:
-        hdr = {'User-Agent': 'Mozilla/5.0'}
+        hdr = {'Accept','User-Agent': 'Mozilla/5.0'}
         req = urllib2.Request(url,headers=hdr)
         u = urllib2.urlopen(req)
         page = u.read()
