@@ -16,11 +16,18 @@ def strip(q):
 
     text = []
     for url in l:
-        hdr = {'User-Agent': 'Mozilla/5.0'}
+        hdr = {
+            'User-Agent': 'Mozilla',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-us',
+        }
         req = urllib2.Request(url,headers=hdr)
         u = urllib2.urlopen(req)
         page = u.read()
         soup = bs4.BeautifulSoup(page,'html')
         raw = soup.get_text()
         text.append(re.sub("[\t\n ]"," ",raw))
-    return text 
+    return text
+
+#while True:
+#    print strip(raw_input())
