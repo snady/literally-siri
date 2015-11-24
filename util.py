@@ -16,6 +16,7 @@ def strip(q):
 
     text = []
     for url in l:
+
         hdr = {
             'User-Agent': 'Mozilla',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
