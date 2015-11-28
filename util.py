@@ -1,4 +1,4 @@
-import urllib2, google, bs4, re
+import urllib2, google, bs4, re, regex, time
 
 def strip(q):
     """
@@ -27,10 +27,29 @@ def strip(q):
             page = u.read()
             soup = bs4.BeautifulSoup(page,'html')
             raw = soup.get_text()
-            text.append(re.sub("[\t\n ]"," ",raw))
+            unicodeVer = re.sub("[\t\n ]"," ",raw)
+            unicodeVer.encode('utf8')
+            str(unicodeVer)
+            print type(unicodeVer)
+            unicodeVer+= "123-456-7890"
+            text.append(unicodeVer)
         except:
             pass
     return text
 
-#while True:
-#    print strip(raw_input())
+
+def findNumbers(text):
+    print  re.findall(regex.number,text)
+    
+def getNumQuery(query):
+    ans = []
+    vals = strip(query)
+    for x in vals:
+        print type(x)
+#        time.sleep(1)
+        ans+=findNumbers(x)
+    return ans
+
+while True:
+    print("Give me a query")
+    print getNumQuery(raw_input())
