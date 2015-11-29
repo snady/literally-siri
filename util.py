@@ -33,7 +33,12 @@ def findNames(text):
     return re.findall(regex.name,text)
 
 def findDates(text):
-    return re.findall(regex.date,text).extend(re.findall(regex.txtDate,text))
+    allDates = []
+    for date in re.findall(regex.date,text):
+        allDates.append(date)
+    for date in re.findall(regex.txtDate,text):
+        allDates.append(date)
+    return allDates
 
 def getNames(query):
     ans = []
@@ -49,12 +54,13 @@ def getDates(query):
         ans+=findDates(x)
     return ans
     
-def mostFreq(results):
+def getAnswer(results):
     if(results):
         return max(results,key=results.count)
     return 0
 
+
 while True:
     print("Give me a query")
     result = getDates(raw_input())
-    print mostFreq(result)
+    print getAnswer(result)
