@@ -1,6 +1,11 @@
 body{   
     background-color:#404040
 }
+.radio-inline{
+    font-weight: bold;
+    font-size: 12px;
+    font-family: sans-serif;
+}
 .center{
     background-color: #F0F0F0;
     text-align:center;
@@ -8,3 +13,4 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+
