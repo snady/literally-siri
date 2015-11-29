@@ -7,8 +7,32 @@ app = Flask(__name__)
 
 @app.route("/", methods = ['GET','POST'])
 def index():
-        return "cool"
+        if request.method == 'GET':
+                try:
+                        error = request.args.get('error')
+                        if error != None:
+                                return render_template("main.html",error = error)
+                except:
+                        pass
+        return render_template("main.html")
+        
+        
+@app.route("/answers", methods = ['GET','POST'])
+def answer():
+        if request.method == 'GET':
+                if request.args.get('optbtn') == 'who':
+                        #This is a who query: construct ans accordingly
+                        ans = "Jion Fairchild played spidermam"
+                elif request.args.get('optbtn') == 'when':
+                        #this is a when quer: construct ans accordingly
+                        ans = "Jion Fairchild was born yesterday"
+                else:
+                        #someone tried to get to answers direct url, redirects to error
+                        return redirect("/?error=%s" % "ERROR: INVALID QUERY")
+        else:
+                return redirect("/")
 
+        return render_template("answers.html", ans=ans)
 
 if __name__ == "__main__":
         app.secret_key = "hello"

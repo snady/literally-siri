@@ -20,25 +20,26 @@
       
       <div class="center col-sm-8"> 
 
-	<a href="main">
+	<a href="/">
 	  <img class="fossil" src="../static/fossil.png" height="150" width="150">	
 	</a>
 	<br>
 	<br>
+	<h3 class="error">{{error}}</h3>
 	<h1>Consult the Fossil</h1>
-        <form method="GET" class="form-inline" role="form">
+        <form action="/answers" method="GET" class="form-inline" role="form">
 	  <input type="text" class="form-control" id="query"
                  name="query" placeholder="What do you wish to know?" autofocus>
-          <button href="answers" type="submit" class="btn btn-default">Find Out!</button>
+          <button href="/answers.html" type="submit" class="btn btn-default">Find Out!</button>
 	  <br>
 	  <div class="radio-inline">
 	    This is a
 	    <div class="radio-inline radioBox">
 	      
-	      <label><input type="radio" name="optradio">who query</label>
+	      <label><input type="radio" name="optbtn" value="who">who query</label>
 	    </div>
 	    <div class="radio-inline radioBox">
-	      <label><input type="radio" name="optradio">when query</label>
+	      <label><input type="radio" name="optbtn" value="when">when query</label>
 	    </div>
 	  </div>
         </form>
