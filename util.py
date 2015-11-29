@@ -60,7 +60,8 @@ def getAnswer(results):
     return 0
 
 
-while True:
+"""while True:
     print("Give me a query")
     result = getDates(raw_input())
     print getAnswer(result)
+"""

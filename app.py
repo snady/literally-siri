@@ -22,10 +22,15 @@ def answer():
         if request.method == 'GET':
                 if request.args.get('optbtn') == 'who':
                         #This is a who query: construct ans accordingly
-                        ans = "Jion Fairchild played spidermam"
+                        query = request.args.get('query')
+                        result = util.getNames(query)
+                        ans = util.getAnswer(result)
+                        
                 elif request.args.get('optbtn') == 'when':
                         #this is a when quer: construct ans accordingly
-                        ans = "Jion Fairchild was born yesterday"
+                        query = request.args.get('query')
+                        result = util.getDates(query)
+                        ans = util.getAnswer(result)
                 else:
                         #someone tried to get to answers direct url, redirects to error
                         return redirect("/?error=%s" % "ERROR: INVALID QUERY")
