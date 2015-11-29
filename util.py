@@ -8,7 +8,7 @@ def strip(q):
     Returns:
     A list of 10 pages, each stripped separately
     """
-    r = google.search(q,num=10,start=0,stop=10)
+    r = google.search(q,num=15,start=0,stop=15)
 
     l = []
     for result in r:
@@ -17,43 +17,34 @@ def strip(q):
     text = []
     for url in l:
         try:
-            hdr = {
-                'User-Agent': 'Mozilla',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                'Accept-Language': 'en-us',
-                }
-            req = urllib2.Request(url,headers=hdr)
+            req = urllib2.Request(url)
             u = urllib2.urlopen(req)
             page = u.read()
             soup = bs4.BeautifulSoup(page,'html')
             raw = soup.get_text()
-           
-            unicodeVer = re.sub("[\t\n ]"," ",raw)
-            unicodeVer.encode('utf8')
-            reg = str(unicodeVer)
-#            print type(reg)
-#            reg += "123-456-7890"
             
+            reg = re.sub("[\t\n ]"," ",raw)
             text.append(reg)
         except:
             pass
     return text
-
-
-def findNumbers(text):
-    return re.findall(regex.number,text)
     
-def getNumQuery(query):
+def findNames(text):
+    return re.findall(regex.name,text)
+
+def getNameQuery(query):
     ans = []
     vals = strip(query)
     for x in vals:
-#        print type(x)
-#        time.sleep(1)
-        ans+=findNumbers(x)
+        ans+=findNames(x)
     return ans
 
-#print re.findall(regex.number,"123-456-7890")
+def mostFreq(results):
+    if(results):
+        return max(results,key=results.count)
+    return 0
 
 while True:
     print("Give me a query")
-    print getNumQuery(raw_input())
+    result = getNameQuery(raw_input())
+    print mostFreq(result)
