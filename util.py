@@ -32,13 +32,23 @@ def strip(q):
 def findNames(text):
     return re.findall(regex.name,text)
 
-def getNameQuery(query):
+def findDates(text):
+    return re.findall(regex.date,text).extend(re.findall(regex.txtDate,text))
+
+def getNames(query):
     ans = []
     vals = strip(query)
     for x in vals:
         ans+=findNames(x)
     return ans
-
+    
+def getDates(query):
+    ans = []
+    vals = strip(query)
+    for x in vals:
+        ans+=findDates(x)
+    return ans
+    
 def mostFreq(results):
     if(results):
         return max(results,key=results.count)
@@ -46,5 +56,5 @@ def mostFreq(results):
 
 while True:
     print("Give me a query")
-    result = getNameQuery(raw_input())
+    result = getDates(raw_input())
     print mostFreq(result)
